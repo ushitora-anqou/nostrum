@@ -306,6 +306,10 @@ defmodule Nostrum.Shard.Dispatch do
     {event, Interaction.to_struct(p), state}
   end
 
+  def handle_event(:VOICE_READY = event, p, state) do
+    {event, p, state}
+  end
+
   def handle_event(event, p, state) do
     Logger.warn("UNHANDLED GATEWAY DISPATCH EVENT TYPE: #{event}, #{inspect(p)}")
     {event, p, state}

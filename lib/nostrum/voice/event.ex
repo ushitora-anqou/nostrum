@@ -4,6 +4,7 @@ defmodule Nostrum.Voice.Event do
   alias Nostrum.Cache.UserCache
   alias Nostrum.Voice
   alias Nostrum.Voice.{Audio, Payload}
+  alias Nostrum.Shard.Stage.Producer
 
   require Logger
 
@@ -29,6 +30,8 @@ defmodule Nostrum.Voice.Event do
       rtp_sequence: 0,
       rtp_timestamp: 0
     )
+
+    Producer.notify(Producer, %{t: :VOICE_READY, d: state}, state)
 
     state
   end
